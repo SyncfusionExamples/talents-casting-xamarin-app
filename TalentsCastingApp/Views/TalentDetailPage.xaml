@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="White"
+             xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="TalentsCastingApp.Views.TalentDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="itemTemplate">
+                <Image Source="{Binding Picture}" 
+                       Aspect="AspectFill"
+                       HorizontalOptions="FillAndExpand"/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,Auto">
+         <!-- Talent image Carousel-->
+            <CarouselView Grid.Row="0" ItemsSource="{Binding talents}"
+                      IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image Grid.Row="0" Aspect="AspectFill" Source="{Binding Picture}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        <!-- Talent image IndicatorView-->
+        <IndicatorView Grid.Row="1" x:Name="indicatorView" VerticalOptions="Start" TranslationY="-75" 
+               IndicatorsShape="Circle"
+               IndicatorColor="LightGray"
+               SelectedIndicatorColor="DarkGray" />
+
+            <!-- Talent informacion-->
+            <Frame Grid.Row="1" HasShadow="False" TranslationY="-30" CornerRadius="25" HeightRequest="205">
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*,*">
+                    <!--Talent Name-->
+                    <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Mathilda Lane" FontAttributes="Bold" FontSize="30" Padding="0,15,0,0"/>
+                    <!--Heart icon-->
+                    <Image Grid.Row="0" Grid.Column="2" HorizontalOptions="End" Margin="0,15,10,0" Aspect="Fill" WidthRequest="35" HeightRequest="35" Source="Heart"/>
+                    <!--Rating component--> 
+                    <rating:SfRating Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemCount="5" Value="4" ReadOnly="true" ItemSize="17" ItemSpacing="2" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="72" FontAttributes="Bold" TextColor="Silver" FontSize="16" HorizontalOptions="End" TranslationX="16" />
+                    <!--Location information-->
+                    <Label Grid.Row="2" Grid.Column="0" Padding="0,10,0,0" FontAttributes="Bold" HorizontalOptions="Start">
+                       <Label.FormattedText>
+                           <FormattedString>
+                               <Span Text="Location &#10;" TextColor="Silver"/>
+                               <Span Text="Riga, Latvia" TextColor="#393e42"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                     </Label>
+                    <Line  Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Y1="50" Margin="5" StrokeThickness="0.5" Stroke="Silver"/>
+                    <!--Age information-->
+                    <Label Grid.Row="2" Grid.Column="1" Padding="5,10,0,0" FontAttributes="Bold" HorizontalOptions="Center">
+                       <Label.FormattedText>
+                           <FormattedString>
+                               <Span Text="Age &#10;" TextColor="Silver"/>
+                               <Span Text="29 years" TextColor="#393e42"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                     </Label>
+                    <Line  Grid.Row="2" Grid.Column="1" HorizontalOptions="End"  Y1="50" Margin="5" StrokeThickness="0.5" Stroke="Silver"/>
+                    <!--Gender information-->
+                    <Label Grid.Row="2" Grid.Column="2" Padding="5,10,0,0" FontAttributes="Bold" HorizontalOptions="Center">
+                       <Label.FormattedText>
+                           <FormattedString>
+                               <Span Text="Gender &#10;" TextColor="Silver"/>
+                               <Span Text="Female" TextColor="#393e42"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                     </Label>
+                    <!-- Invite to casting button-->
+                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Text="Invite to casting" FontSize="18" HeightRequest="50" TextColor="White" FontAttributes="Bold" CornerRadius="20" BackgroundColor="#ef5360"/>
+
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

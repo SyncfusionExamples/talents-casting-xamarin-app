@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:PanCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:chips="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"             x:Class="TalentsCastingApp.Views.TalentPage">
+    <ContentPage.Content>
+        <!-- Talent main bar -->
+        <Grid RowSpacing="0" RowDefinitions="Auto,Auto,Auto,*" ColumnDefinitions="*,Auto" Padding="25,60,25,0">
+
+            <!-- Header structure-->
+                <!-- Title-->
+            <Label Grid.Row="0" Grid.Column="0" Text="Talents" FontAttributes="Bold" FontSize="30"/>
+                <!-- Profile imagen with rounded corners-->
+            <PanCake:PancakeView Grid.Row="0" Grid.Column="1" HeightRequest="100" Grid.RowSpan="2"  CornerRadius="15">
+                <Image Source="Nick"/>
+            </PanCake:PancakeView>
+                <!-- Subtitle with number of talents-->
+            <Label Grid.Row="1" Grid.Column="0" Text="12 420 available" FontSize="15" TextColor="#90999f"/>
+                <!-- Talent search bar-->
+            <SearchBar Grid.Row="2" Grid.Column="0" Placeholder="Search talents ..." BackgroundColor="Transparent" Margin="0,15,0,0"/>
+                <!-- Settings Icon -->
+            <Image Grid.Row="2" Grid.Column="1" Source="Settings" Margin="15,20,15,0"/>
+
+            <!-- Talent list information-->
+             <CollectionView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0" 
+                                     VerticalScrollBarVisibility="Never"
+                                     HeightRequest="445"
+                                     ItemsSource="{Binding talents}">
+                         <CollectionView.ItemTemplate>
+                               <DataTemplate>   
+                                    <!-- Main image-->
+                                   <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
+                                    <Line Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" X1="340"  Margin="0,20" StrokeThickness="0.5" Stroke="Silver"/>
+                                      <!--Main imagen -->
+                                      <PanCake:PancakeView Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" CornerRadius="20">
+                                        <Image Source="{Binding Picture}" HeightRequest="200" WidthRequest="130" Aspect="Fill"/>
+                                      </PanCake:PancakeView>
+                                      <!--Talent Name-->
+                                      <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Padding="10,0,0,0" Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                                      <!--Heart icon-->
+                                      <Image Grid.Row="1" Grid.Column="2" HorizontalOptions="End" Margin="0,0,10,0" Source="Heart"/>
+                                      <!--Rating component--> 
+                                      <rating:SfRating Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,0,0,0" ItemCount="5" Value="{Binding Rating}" ReadOnly="true" ItemSize="13" ItemSpacing="2" />
+                                      <Label Grid.Column="1" Grid.Row="2" Text="72" FontAttributes="Bold" TextColor="Silver" FontSize="13" HorizontalOptions="End" TranslationX="-20" />
+                                      <!--Location information-->
+                                      <Label Grid.Row="3" Grid.Column="1" Padding="10,10,0,0">
+                                          <Label.FormattedText>
+                                              <FormattedString>
+                                                  <Span Text="Location &#10;" TextColor="Silver" FontAttributes="Bold"/>
+                                                  <Span Text="{Binding Location}" TextColor="#393e42" FontSize="14" FontAttributes="Bold"/>
+                                              </FormattedString>
+                                          </Label.FormattedText>
+                                      </Label>
+                                      <Line  Grid.Row="3" Grid.Column="1" HorizontalOptions="End"  Y1="50" Margin="5" StrokeThickness="0.5" Stroke="Silver"/>
+
+                                      <!--Age information-->
+                                      <Label Grid.Row="3" Grid.Column="2" Padding="10,10,0,0">
+                                              <Label.FormattedText>
+                                                  <FormattedString>
+                                                      <Span Text="Age &#10;" TextColor="Silver" FontAttributes="Bold"/>
+                                                      <Span Text="{Binding Age}" TextColor="#393e42" FontSize="14" FontAttributes="Bold"/>
+                                                  </FormattedString>
+                                              </Label.FormattedText>
+                                      </Label>
+
+                                      <!--Skills-->
+                                     <CollectionView Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding skills}"
+                                                    HorizontalScrollBarVisibility="Never"
+                                                    HeightRequest="72">
+                                                    <CollectionView.ItemsLayout>
+                                                       <GridItemsLayout Orientation="Horizontal"
+                                                                        Span="2" />
+                                                    </CollectionView.ItemsLayout>
+                                                    <CollectionView.ItemTemplate>
+                                                          <DataTemplate> 
+                                                              <StackLayout Padding="5">
+                                                                   <Button Text="{Binding Descripcion}" BackgroundColor="Transparent" CornerRadius="12" BorderColor="#9ca3a8" FontSize="9" BorderWidth="1.3" TextColor="Black" Opacity="0.7" HeightRequest="30" Padding="10" HorizontalOptions="Start"/>
+                                                              </StackLayout> 
+                                                          </DataTemplate>
+                                                    </CollectionView.ItemTemplate>
+                                     </CollectionView> 
+                                </Grid>
+                                </DataTemplate>
+                         </CollectionView.ItemTemplate>
+              </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
